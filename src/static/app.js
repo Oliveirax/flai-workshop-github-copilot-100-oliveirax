@@ -4,6 +4,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
 
+  // Icon mapping for activities
+  const activityIcons = {
+    "Chess Club": "♟️",
+    "Programming Class": "💻",
+    "Gym Class": "🏃",
+    "Soccer Team": "⚽",
+    "Basketball Club": "🏀",
+    "Drama Club": "🎭",
+    "Art Workshop": "🎨",
+    "Math Olympiad": "📐",
+    "Science Club": "🔬",
+  };
+
   // Function to fetch activities from API
   async function fetchActivities() {
     try {
@@ -28,8 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
               </li>`).join('')}</ul>`
           : `<p class="no-participants">No participants yet — be the first!</p>`;
 
+        const icon = activityIcons[name] ?? "🎓";
+
         activityCard.innerHTML = `
-          <h4>${name}</h4>
+          <h4><span class="activity-icon">${icon}</span>${name}</h4>
           <p>${details.description}</p>
           <p><strong>Schedule:</strong> ${details.schedule}</p>
           <p><strong>Availability:</strong> ${spotsLeft} spots left</p>
